@@ -17,6 +17,7 @@ Each package has its own `README` and documentation describing usage.
 
 | package |     |     |
 | ------- | --- | --- |
+| `apollo-link-firebase-firestore` | [directory](packages/apollo-link-firebase-firestore) | [![npm version](https://badge.fury.io/js/patsissons%2Fapollo-link-firebase-firestore.svg)](https://badge.fury.io/js/patsissons%2Fapollo-link-firebase-firestore) |
 
 ## Want to contribute?
 

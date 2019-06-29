@@ -1,0 +1,48 @@
+{
+  "name": "apollo-link-firebase-firestore",
+  "version": "0.1.0",
+  "license": "MIT",
+  "description": "An Apollo link for firestore.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsc --p tsconfig.build.json",
+    "prepublishOnly": "yarn run build"
+  },
+  "publishConfig": {
+    "access": "public",
+    "@shopify:registry": "https://registry.npmjs.org"
+  },
+  "author": "Pat Sissons",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/patsissons/apollo-link-firebase.git"
+  },
+  "bugs": {
+    "url": "https://github.com/patsissons/apollo-link-firebase/issues"
+  },
+  "homepage": "https://github.com/patsissons/apollo-link-firebase/blob/master/packages/apollo-link-firebase-firestore/README.md",
+  "dependencies": {
+    "change-case": "^3.0.0",
+    "graphql-anywhere": "^4.0.0",
+    "zen-observable-ts": "^0.8.0"
+  },
+  "devDependencies": {
+    "@types/graphql": "^14.0.0",
+    "apollo-link": "^1.0.0",
+    "apollo-utilities": "^1.0.0",
+    "firebase": "^6.0.0",
+    "graphql": "^14.0.0",
+    "typescript": "~3.5.0"
+  },
+  "files": [
+    "dist/*"
+  ],
+  "peerDependencies": {
+    "apollo-link": "^1.0.0",
+    "apollo-utilities": "^1.0.0",
+    "firebase": "^6.0.0",
+    "graphql": "^14.0.0"
+  }
+}

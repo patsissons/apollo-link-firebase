@@ -1,0 +1,1 @@
+export {createFirestoreLink} from './FirestoreLink';
