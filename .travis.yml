@@ -1,0 +1,47 @@
+language: node_js
+
+matrix:
+  include:
+    - node_js: '12'
+    - node_js: '11'
+    - node_js: 'lts/*'
+      env: UPLOAD_COVERALLS=yes
+
+env:
+  global:
+    - BUILD_ENV=production
+    - NODE_ENV=$BUILD_ENV
+
+notifications:
+  email: false
+
+before_install:
+  - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.12.3
+  - export PATH="$HOME/.yarn/bin:$PATH"
+
+install:
+  - yarn install --production=false
+
+script:
+  - env
+  - yarn lint
+  - yarn ci:lint-docs
+  - yarn build
+  - yarn jest --maxWorkers=3 --coverage --coverageReporters lcov
+
+cache: yarn
+
+after_success:
+  - "[[ $UPLOAD_COVERALLS == 'yes' ]] && yarn coveralls < coverage/lcov.info"
+  - "[[ $UPLOAD_COVERALLS == 'yes' ]] && yarn codecov < coverage/lcov.info"
+
+before_deploy:
+  - echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" >> $HOME/.npmrc 2> /dev/null
+
+deploy:
+  provider: script
+  script: 'yarn lerna publish from-git'
+  skip_cleanup: true
+  on:
+    node: 'lts/*'
+    tags: true
