@@ -1,0 +1,69 @@
+{
+  "name": "apollo-link-firebase",
+  "version": "1.0.0",
+  "description": "Tools to connect Apollo to firebase",
+  "scripts": {
+    "publish": "lerna publish",
+    "prebuild": "yarn run clean",
+    "build": "lerna run build",
+    "lint": "yarn eslint '**/*.{ts,tsx}'",
+    "ci:lint-docs": "yarn generate docs && test -z \"$(git status --porcelain)\" || echo 'The root README has not been updated. Run `yarn generate docs` in the root of your quilt directory and try again.'",
+    "test": "jest --maxWorkers=3 --coverage=false",
+    "check": "lerna run check",
+    "release": "lerna publish && git push --follow-tags",
+    "clean": "rimraf './packages/*/dist/**/*.{js,d.ts}'",
+    "generate": "yarn plop",
+    "tophat": "node ./bin/tophat.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/patsissons/apollo-link-firebase.git"
+  },
+  "author": "Pat Sissons",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/patsissons/apollo-link-firebase/issues"
+  },
+  "homepage": "https://github.com/patsissons/apollo-link-firebase#readme",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "@shopify/graphql-testing": "^3.0.0",
+    "@types/faker": "^4.0.0",
+    "@types/graphql": "^14.0.0",
+    "@types/jest": "^24.0.0",
+    "apollo-link": "^1.0.0",
+    "apollo-utilities": "^1.0.0",
+    "codecov": "^3.0.0",
+    "eslint": "^5.0.0",
+    "eslint-plugin-shopify": "^28.0.0",
+    "eslint-stats": "^1.0.0",
+    "faker": "^4.0.0",
+    "firebase": "^6.0.0",
+    "graphql": "^14.0.0",
+    "graphql-anywhere": "^4.0.0",
+
+    "husky": "^2.0.0",
+    "jest": "^24.0.0",
+    "jest-extended": "^0.11.0",
+    "jest-transform-graphql": "^2.0.0",
+    "lerna": "^3.0.0",
+    "plop": "^2.0.0",
+    "prettier": "^1.0.0",
+    "pretty-quick": "^1.0.0",
+    "ts-jest": "^24.0.0",
+    "typescript": "~3.5.0",
+    "zen-observable-ts": "^0.8.0"
+  },
+  "resolutions": {
+    "typescript-estree": "18.1.0",
+    "typescript-eslint-parser": "^22.0.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  }
+}
