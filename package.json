@@ -9,7 +9,7 @@
     "ci:lint-docs": "yarn generate docs && test -z \"$(git status --porcelain)\" || echo 'The root README has not been updated. Run `yarn generate docs` in the root of your quilt directory and try again.'",
     "test": "jest --maxWorkers=3 --watch",
     "check": "lerna run check",
-    "release": "lerna version && git push --follow-tags",
+    "release": "lerna version",
     "clean": "rimraf './packages/*/dist/**/*.{js,d.ts}'",
     "generate": "yarn plop",
     "tophat": "node ./bin/tophat.js"

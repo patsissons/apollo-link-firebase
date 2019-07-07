@@ -40,7 +40,7 @@ before_deploy:
 
 deploy:
   provider: script
-  script: 'yarn lerna publish from-git'
+  script: 'yarn lerna publish from-git --yes'
   skip_cleanup: true
   on:
     node: 'lts/*'
