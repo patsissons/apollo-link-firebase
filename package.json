@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "Tools to connect Apollo to firebase",
   "scripts": {
-    "version": "lerna version",
     "prebuild": "yarn run clean",
     "build": "lerna run build",
     "lint": "yarn eslint '**/*.{ts,tsx}'",
