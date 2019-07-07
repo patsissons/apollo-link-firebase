@@ -1,0 +1,10 @@
+{
+  "groups": {
+    "default": {
+      "packages": [
+        "package.json",
+        "packages/apollo-link-firebase-firestore/package.json"
+      ]
+    }
+  }
+}
