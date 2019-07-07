@@ -18,7 +18,7 @@ Each package has its own `README` and documentation describing usage.
 | package |     |     |
 | ------- | --- | --- |
 {{#each packageNames}}
-| `{{this}}` | [directory](packages/{{this}}) | [![npm version](https://badge.fury.io/js/patsissons%2F{{this}}.svg)](https://badge.fury.io/js/patsissons%2F{{this}}) |
+| `{{this}}` | [directory](packages/{{this}}) | [![npm version](https://badge.fury.io/js/{{this}}.svg)](https://badge.fury.io/js/{{this}}) |
 {{/each}}
 
 ## Want to contribute?

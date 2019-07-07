@@ -14,7 +14,7 @@
     {
       "files": ["*.test.ts", "*.test.tsx"],
       "rules": {
-        "rules": {"shopify/jsx-no-hardcoded-content": "off"}
+        "shopify/jsx-no-hardcoded-content": "off"
       }
     }
   ]

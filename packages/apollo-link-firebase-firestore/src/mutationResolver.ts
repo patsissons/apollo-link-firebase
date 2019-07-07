@@ -91,7 +91,7 @@ export function mutationRefForPath(
   return ref;
 }
 
-async function resolveMutation(
+export async function resolveMutation(
   mutationRef: FirestoreReference,
   data: Record<string, any>,
   {merge, mergeFields, mutationType}: MutationDirectiveArgs,
