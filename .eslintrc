@@ -1,12 +1,9 @@
 {
   "extends": [
-    "plugin:shopify/typescript",
+    "./.eslint.typescript.js",
     "plugin:shopify/jest",
     "plugin:shopify/prettier"
   ],
-  "parserOptions": {
-    "project": "tsconfig.json"
-  },
   "rules": {
     "no-empty-pattern": "off"
   },
