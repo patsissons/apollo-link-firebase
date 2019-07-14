@@ -1,4 +1,3 @@
-import {pascalCase} from 'change-case';
 import {firestore} from 'firebase/app';
 import {createQuery} from './createQuery';
 import {
@@ -172,5 +171,13 @@ export function resolveSnapshot(
 }
 
 export function resolveTypename({type}: TypeDirectiveArg, fieldName: string) {
-  return type || pascalCase(fieldName.replace(/s$/i, ''));
+  return (
+    type ||
+    fieldName
+      .replace(/s$/i, '')
+      .replace(
+        /\w+/g,
+        (val) => `${val[0].toUpperCase()}${val.slice(1).toLowerCase()}`,
+      )
+  );
 }
