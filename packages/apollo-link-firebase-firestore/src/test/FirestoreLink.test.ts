@@ -232,7 +232,6 @@ describe('FirestoreLink', () => {
     await new Promise((resolve) => {
       observable!.subscribe({
         next() {
-          // eslint-disable-next-line shopify/jest/no-if
           if (graphqlMock.mock.calls.length === 1) {
             setImmediate(graphqlMock.mock.calls[0][3].onSnapshot.next, {});
           }
