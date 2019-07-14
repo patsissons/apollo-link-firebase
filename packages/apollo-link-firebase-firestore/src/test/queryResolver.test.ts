@@ -1,5 +1,5 @@
 import {pascalCase} from 'change-case';
-import {firestore} from 'firebase';
+import {firestore} from 'firebase/app';
 import {
   queryResolver,
   refForPath,
