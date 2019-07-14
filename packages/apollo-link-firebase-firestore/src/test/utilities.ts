@@ -1,6 +1,6 @@
 // istanbul ignore file
 
-import {firestore} from 'firebase';
+import {firestore} from 'firebase/app';
 
 export function mockFirestore(props: Partial<firestore.Firestore> = {}) {
   return {
