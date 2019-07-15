@@ -1,6 +1,7 @@
 import {pascalCase} from 'change-case';
 import {firestore} from 'firebase/app';
 import {
+  QueryError,
   queryResolver,
   refForPath,
   resolveCollectionQuery,
@@ -159,7 +160,7 @@ describe('queryResolver()', () => {
     const info = {...defaultMockInfo};
 
     expect(() => queryResolver('field', {}, {}, context, info)).toThrow(
-      /^Invalid query/,
+      /^Invalid query: no snapshot or query directive/,
     );
   });
 });
@@ -167,7 +168,7 @@ describe('queryResolver()', () => {
 describe('refForPath()', () => {
   it('throws an error if rootType is missing', () => {
     expect(() => refForPath('path', null as any, mockFirestore())).toThrow(
-      /required/,
+      /^Invalid query: rootType is required/,
     );
   });
 
@@ -617,5 +618,20 @@ describe('resolveTypename()', () => {
     const field = 'Tests';
 
     expect(resolveTypename({}, field)).toBe(field.replace(/s$/, ''));
+  });
+});
+
+describe('QueryError', () => {
+  it('has a message that starts with Invalid query', () => {
+    expect(new QueryError('')).toMatchObject({
+      message: expect.stringMatching(/^Invalid query/),
+    });
+  });
+
+  it('has a message ending in the constructor param', () => {
+    const message = 'testing';
+    expect(new QueryError(message)).toMatchObject({
+      message: expect.stringMatching(new RegExp(`${message}$`)),
+    });
   });
 });
