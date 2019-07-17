@@ -51,7 +51,7 @@ export function queryResolver(
     );
   }
 
-  throw new Error('Invalid query: no snapshot or query directive');
+  throw new QueryError('no snapshot or query directive');
 }
 
 export function refForPath(
@@ -60,7 +60,7 @@ export function refForPath(
   store: firestore.Firestore,
 ) {
   if (!rootType) {
-    throw new Error('rootType is required');
+    throw new QueryError('rootType is required');
   }
 
   const [rootPath, ...pathElems] = path.split('.');
@@ -180,4 +180,11 @@ export function resolveTypename({type}: TypeDirectiveArg, fieldName: string) {
         (val) => `${val[0].toUpperCase()}${val.slice(1).toLowerCase()}`,
       )
   );
+}
+
+export class QueryError extends Error {
+  constructor(message: string) {
+    // istanbul ignore next
+    super(`Invalid query: ${message}`);
+  }
 }
