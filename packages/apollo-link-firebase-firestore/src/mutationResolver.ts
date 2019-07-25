@@ -36,14 +36,11 @@ export async function mutationResolver(
     } = directives.mutation;
 
     if (!mutationType) {
-      throw new Error('mutationType is required');
+      throw new MutationError('mutationType is required');
     }
 
-    const data = dataArg || (args && args[dataVar]);
-
-    if (!data) {
-      throw new Error('mutation requires a valid dataArg or dataVar');
-    }
+    const data: Record<string, any> | undefined =
+      dataArg || (args && args[dataVar]);
 
     const docRef = await resolveMutation(
       mutationRefForPath(path, rootType, store, mutationType, data),
@@ -69,7 +66,7 @@ export async function mutationResolver(
     );
   }
 
-  throw new Error('Invalid mutation: no snapshot or mutation directive');
+  throw new MutationError('no snapshot or mutation directive');
 }
 
 export function mutationRefForPath(
@@ -77,7 +74,7 @@ export function mutationRefForPath(
   rootType: FirestoreReferenceType,
   store: firestore.Firestore,
   mutationType: FirestoreMutationType,
-  {id}: Record<string, any>,
+  data: Record<string, any> | undefined,
 ) {
   const ref = refForPath(path, rootType, store);
 
@@ -85,7 +82,17 @@ export function mutationRefForPath(
     ref instanceof firestore.CollectionReference &&
     mutationType !== FirestoreMutationType.Add
   ) {
-    return ref.doc(id);
+    if (!data) {
+      throw new MutationError('mutation requires a valid dataArg or dataVar');
+    }
+
+    if (typeof data.id !== 'string') {
+      throw new MutationError(
+        'mutation requires a valid id through dataArg or dataVar',
+      );
+    }
+
+    return ref.doc(data.id);
   }
 
   return ref;
@@ -93,29 +100,40 @@ export function mutationRefForPath(
 
 export async function resolveMutation(
   mutationRef: FirestoreReference,
-  data: Record<string, any>,
+  data: Record<string, any> | undefined,
   {merge, mergeFields, mutationType}: MutationDirectiveArgs,
 ) {
   if (mutationRef instanceof firestore.CollectionReference) {
     if (mutationType !== FirestoreMutationType.Add) {
-      throw new Error(
-        'Invalid Mutation: collection reference only supports the add mutation',
+      throw new MutationError(
+        'collection reference only supports the add mutation',
       );
+    }
+
+    if (!data) {
+      throw new MutationError('mutation requires a valid dataArg or dataVar');
     }
 
     return mutationRef.add(data);
   }
 
   if (mutationType === FirestoreMutationType.Add) {
-    throw new Error(
-      'Invalid Mutation: document reference does not support the add mutation',
+    throw new MutationError(
+      'document reference does not support the add mutation',
     );
   }
 
+  if (mutationType === FirestoreMutationType.Delete) {
+    await mutationRef.delete();
+
+    return mutationRef;
+  }
+
+  if (!data) {
+    throw new MutationError('mutation requires a valid dataArg or dataVar');
+  }
+
   switch (mutationType) {
-    case FirestoreMutationType.Delete:
-      await mutationRef.delete();
-      break;
     case FirestoreMutationType.Set:
       await mutationRef.set(data, {
         merge: Boolean(merge || mergeFields),
@@ -128,4 +146,11 @@ export async function resolveMutation(
   }
 
   return mutationRef;
+}
+
+export class MutationError extends Error {
+  constructor(message: string) {
+    // istanbul ignore next
+    super(`Invalid mutation: ${message}`);
+  }
 }
