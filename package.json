@@ -33,7 +33,7 @@
     "@types/faker": "^4.0.0",
     "@types/graphql": "^14.0.0",
     "@types/jest": "^24.0.0",
-    "@typescript-eslint/eslint-plugin": "^1.0.0",
+    "@typescript-eslint/eslint-plugin": "^2.2.0",
     "@typescript-eslint/parser": "^1.0.0",
     "apollo-link": "^1.0.0",
     "apollo-utilities": "^1.0.0",
