@@ -39,7 +39,7 @@
     "apollo-utilities": "^1.0.0",
     "codecov": "^3.0.0",
     "coveralls": "^3.0.0",
-    "eslint": "^5.0.0",
+    "eslint": "^6.4.0",
     "eslint-plugin-shopify": "^29.0.0",
     "eslint-stats": "^1.0.0",
     "faker": "^4.0.0",
