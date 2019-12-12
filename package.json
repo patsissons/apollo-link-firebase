@@ -43,7 +43,7 @@
     "eslint-plugin-shopify": "^29.0.0",
     "eslint-stats": "^1.0.0",
     "faker": "^4.0.0",
-    "firebase": "^6.0.0",
+    "firebase": "^7.6.0",
     "graphql": "^14.0.0",
     "graphql-anywhere": "^4.0.0",
     "husky": "^3.0.0",
