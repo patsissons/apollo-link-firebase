@@ -42,6 +42,6 @@
     "apollo-link": "^1.0.0",
     "apollo-utilities": "^1.0.0",
     "firebase": "^6.0.0",
-    "graphql": "^14.0.0"
+    "graphql": "^14.6.0"
   }
 }
