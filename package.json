@@ -40,7 +40,7 @@
     "codecov": "^3.0.0",
     "coveralls": "^3.0.0",
     "eslint": "^5.0.0",
-    "eslint-plugin-shopify": "^29.0.0",
+    "eslint-plugin-shopify": "^34.0.1",
     "eslint-stats": "^1.0.0",
     "faker": "^4.0.0",
     "firebase": "^6.0.0",
