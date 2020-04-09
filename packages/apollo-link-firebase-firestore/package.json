@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "@types/graphql": "^14.0.0",
-    "apollo-link": "^1.0.0",
+    "apollo-link": "^1.2.14",
     "apollo-utilities": "^1.0.0",
     "firebase": "^6.0.0",
     "graphql": "^14.0.0",
