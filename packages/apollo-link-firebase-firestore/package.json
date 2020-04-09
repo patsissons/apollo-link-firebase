@@ -25,7 +25,7 @@
   "homepage": "https://github.com/patsissons/apollo-link-firebase/blob/master/packages/apollo-link-firebase-firestore/README.md",
   "dependencies": {
     "graphql-anywhere": "^4.0.0",
-    "zen-observable-ts": "^0.8.0"
+    "zen-observable-ts": "^0.8.21"
   },
   "devDependencies": {
     "@types/graphql": "^14.0.0",
